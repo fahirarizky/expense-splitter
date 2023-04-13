@@ -14,23 +14,28 @@ struct ReviewPage: View {
                 HStack{
                     Spacer()
                     Text("Step")
-                    Text("2").font(.subheadline).fontWeight(.semibold).foregroundColor(Color("ButtonColor"))
+                    Text("3").font(.subheadline).fontWeight(.semibold).foregroundColor(Color("ButtonColor"))
                         .padding(.horizontal,-3)
-                    Text("of 2")
+                    Text("of 3")
                     Spacer()
                 }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
                     .fontWeight(.regular)
                 
                 ActivityMember()
                 
-                List{
-                    ReviewList()
-                }.listStyle(.grouped)
-                    .font(.body)
-                    .fontWeight(.regular)
-                    .foregroundColor(Color("ButtonColor"))
-                    .scrollContentBackground(/*@START_MENU_TOKEN@*/.hidden/*@END_MENU_TOKEN@*/)
-                    .background(Color("BGColor"))
+                VStack{
+                    List{
+                        ReviewList()
+                    }.listStyle(.grouped)
+                        .font(.body)
+                        .fontWeight(.regular)
+                        .foregroundColor(Color("ButtonColor"))
+
+                }
+                .background(Color.red)
+
+//                    .scrollContentBackground(/*@START_MENU_TOKEN@*/.hidden/*@END_MENU_TOKEN@*/)
+//                    .background(Color("BGColor"))
                     
                 
                 HStack{

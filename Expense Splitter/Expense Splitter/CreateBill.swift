@@ -13,9 +13,9 @@ struct CreateBill: View {
             VStack {
                 HStack{
                     Text("Step")
-                    Text("1").font(.subheadline).fontWeight(.bold).foregroundColor(Color("ButtonColor"))
+                    Text("2").font(.subheadline).fontWeight(.bold).foregroundColor(Color("ButtonColor"))
                                         .padding(.horizontal,-3)
-                    Text("of 2")
+                    Text("of 3")
                     }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
                     .fontWeight(.regular)
                 Spacer()
