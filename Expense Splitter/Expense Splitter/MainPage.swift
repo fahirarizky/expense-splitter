@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainPage: View {
+    @State var activityName: String = ""
+    @State var totalMembers: String = ""
     var body: some View {
         NavigationView {
             VStack {
@@ -33,7 +35,7 @@ struct MainPage: View {
                     }
                     HStack{
                         Image("Car")
-                        TextField("Activity Name", text: .constant(""))
+                        TextField("Activity Name", text: $activityName)
                             .padding(.leading)
                             .frame(width: 280, height: 50.0)
                             .font(.body)
@@ -54,7 +56,7 @@ struct MainPage: View {
                         Image("Members")
                             .resizable()
                             .frame(width: 55.0, height: 30.0)
-                        TextField("Total Members", text: .constant(""))
+                        TextField("Total Members", text: $totalMembers)
                             .padding(.leading)
                             .frame(width: 280.0, height: 50.0)
                             .font(.body)
@@ -67,9 +69,9 @@ struct MainPage: View {
                 }
                 Spacer()
                     .frame(height: 40.0)
-                Button("Continue") {
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-                }
+                NavigationLink(destination: CreateBill(activityName: $activityName, totalMembers: $totalMembers), label: {
+                    Text("Continue")
+                })
                 .fontWeight(.bold)
                 .padding(.all)
                 .frame(maxWidth: .infinity)

@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct AddExpense: View {
+    @Binding var isPresented: Bool
+    @State private var descArray = [String]()
+    @State var priceArray = [Int]()
+    //@State private var priceToAdd = ""
+    @State private var isAddingItem = false
+    @State var desc: String = ""
+    @State var price: String = ""
     var body: some View {
         NavigationView{
             VStack{
@@ -76,16 +83,39 @@ struct AddExpense: View {
             .padding(.horizontal, 30)
             .background(Color("BGColor"))
             .toolbar{
-                Button("Add"){
-                }
+                NavigationLink(destination: CreateBill2(priceArray: $priceArray, descArray: $descArray)){
+                    Text("Add")
+                }.simultaneousGesture(TapGesture().onEnded{
+                    addPrice()
+                    addDesc()
+                })
                 .foregroundColor(Color("ButtonColor"))
             }
         }
     }
     
+    
+    func addPrice() {
+        if price != "" {
+            priceArray.append(Int(price)!)
+            price = ""
+        }
+        //isAddingItem = false
+    }
+    
+    func addDesc() {
+        if desc != "" {
+            descArray.append(desc)
+            desc = ""
+        }
+        //isAddingItem = false
+    }
+    
+    
+    
     struct AddExpense_Previews: PreviewProvider {
         static var previews: some View {
-            AddExpense()
+            AddExpense(isPresented: .constant(false))
         }
     }
 }
