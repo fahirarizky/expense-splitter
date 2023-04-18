@@ -8,18 +8,14 @@
 import SwiftUI
 
 struct ResultPage: View {
+    @State private var isExpanded = false
+    
     var body: some View {
         NavigationView {
-            VStack {
-                //                HStack{
-                //                    Text("Step")
-                //                    Text("3").font(.subheadline).fontWeight(.bold).foregroundColor(Color("ButtonColor"))
-                //                        .padding(.horizontal,-3)
-                //                    Text("of 3")
-                //                }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
-                //                    .fontWeight(.regular)
-                Spacer()
-                VStack{
+            ZStack {
+                Color("BGColor")
+                    .ignoresSafeArea()
+                VStack (spacing: 40) {
                     VStack(spacing: 20){
                         HStack{
                             Text("Grand Total:")
@@ -47,28 +43,48 @@ struct ResultPage: View {
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(Color("ButtonColor"))
                         }
-                        Spacer()
                     }
-                }
-                VStack (spacing: 20){
-                    Text("Each Person Has To Pay")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color("ButtonColor"))
-                    Text("Rp36.000")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("Brown"))
-                    Button{
-                    } label: {
-                        Image("ChevronDown")
-                            .resizable()
-                            .frame(width: 22.0, height: 13.0)
-                    }.padding(.top, -10)
-                    Spacer()
-                }
-                .padding(.bottom, 250.0)
-                VStack{
+                    VStack (spacing: 20){
+                        Text("Each Person Has To Pay")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color("ButtonColor"))
+                        Text("Rp36.000")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("Brown"))
+                        VStack {
+                            Button {
+                                isExpanded.toggle()
+                            } label: {
+                                Image("ChevronDown")
+                                    .resizable()
+                                    .frame(width: 22.0, height: 13.0)
+                                    .rotationEffect(isExpanded ? .degrees(180) : .zero)
+                            }
+                            if isExpanded {
+                                VStack{
+                                    Text("hi")
+                                    Text("huhu")
+                                    Text("hi")
+                                    Text("huhu")
+                                    Text("hi")
+                                    Text("huhu")
+                                    Text("hi")
+                                    Text("huhu")
+                                    Text("hi")
+                                    Text("huhu")
+//                                    Text("hi")
+//                                    Text("huhu")
+//                                    Text("hi")
+//                                    Text("huhu")
+//                                    Text("hi")
+//                                    Text("huhu")
+                                }
+                            }
+                            
+                        }
+                    }
                     Spacer()
                     Button("Done") {
                         /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
@@ -84,20 +100,18 @@ struct ResultPage: View {
                     .background(Color("ButtonColor"))
                     .foregroundColor(Color("BGColor"))
                     .cornerRadius(30)
-                    Spacer()
                 }
+                .navigationTitle("Amount To Pay")
+                .navigationBarTitleDisplayMode(.inline)
+                .padding(.horizontal, 30)
+                .padding(.vertical, 10)
             }
-            .navigationTitle("Amount To Pay")
-            .navigationBarTitleDisplayMode(.inline)
-            .padding(.horizontal, 30)
-            .padding(.top, 5.0)
-            
-            .background(Color("BGColor"))
         }
     }
-    struct ResultPage_Previews: PreviewProvider {
-        static var previews: some View {
-            ResultPage()
-        }
+}
+
+struct ResultPage_Previews: PreviewProvider {
+    static var previews: some View {
+        ResultPage()
     }
 }

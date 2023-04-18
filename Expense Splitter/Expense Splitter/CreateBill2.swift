@@ -13,86 +13,84 @@ struct CreateBill2: View {
     @Binding var descArray : [String]
     var body: some View {
         NavigationView {
-            VStack {
-                HStack{
-                    Text("Step")
-                    Text("2").font(.subheadline).fontWeight(.bold).foregroundColor(Color("ButtonColor"))
-                        .padding(.horizontal,-3)
-                    Text("of 3")
-                }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
-                    .fontWeight(.regular)
-                Spacer()
-                VStack(alignment: .leading){
+            ZStack {
+                Color("BGColor")
+                    .ignoresSafeArea()
+                VStack {
                     HStack{
-                        Spacer()
-                            .frame(width: 275.0)
-                        //                        Button("Add Expense") {
-                        //                            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-                        //                        }
-                        //                        .foregroundColor(Color("ButtonColor"))
+                        Text("Step")
+                        Text("2").font(.subheadline).fontWeight(.bold).foregroundColor(Color("ButtonColor"))
+                            .padding(.horizontal,-3)
+                        Text("of 3")
+                    }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
+                        .fontWeight(.regular)
+                    VStack(alignment: .leading){
+                        HStack{
+                            Spacer()
+                                .frame(width: 275.0)
+
+                        }
+                        HStack{
+                            Text("Expenses")
+                                .foregroundColor(Color("ButtonColor"))
+                                .multilineTextAlignment(.leading)
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                                .padding()
+                            Spacer()
+                                .frame(width: 140.0)
+                        }
+                        List{
+                            //                        ListView()
+                            ForEach(0..<descArray.count, id: \.self) { item in
+                                Text("\(descArray[item])")
+                            }
+                            ForEach(0..<priceArray.count, id: \.self) { item in
+                                Text("\(priceArray[item])")
+                            }
+                            .listRowBackground(Color("BGColor"))
+                        }
+                        .listStyle(.inset)
                     }
-                    HStack{
-                        Text("Expenses")
+                    Spacer()
+                        .frame(height: 40.0)
+                    NavigationLink(destination: ReviewPage(), label: {
+                        Text("Continue")
+                    })
+                    .fontWeight(.bold)
+                    .padding(.all)
+                    .frame(maxWidth: .infinity)
+                    .buttonStyle(.borderless)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                    .background(Color("ButtonColor"))
+                    .foregroundColor(Color("BGColor"))
+                    .cornerRadius(30)
+                    Spacer()
+                        .frame(height: 400.0)
+                }
+                .navigationTitle("Expenses")
+                .navigationBarTitleDisplayMode(.inline)
+                .padding(.horizontal, 30)
+                .padding(.top, 5)                
+                .toolbar{
+                    Button{
+                        isPresented.toggle()
+                        
+                    } label: {
+                        
+                        Image(systemName: "plus")
+                            .foregroundColor(Color("LightGreenFont"))
+                    }
+                    .sheet(isPresented: $isPresented){
+                        AddExpense(isPresented: $isPresented)
+                            .presentationDetents([.large])
                             .foregroundColor(Color("ButtonColor"))
-                            .multilineTextAlignment(.leading)
-                            .font(.title3)
-                            .fontWeight(.heavy)
-                            .padding()
-                        Spacer()
-                            .frame(width: 140.0)
                     }
-                    List{
-                        //                        ListView()
-                        ForEach(0..<descArray.count, id: \.self) { item in
-                            Text("\(descArray[item])")
-                        }
-                        ForEach(0..<priceArray.count, id: \.self) { item in
-                            Text("\(priceArray[item])")
-                        }
-                        .listRowBackground(Color("BGColor"))
-                    }
-                    .listStyle(.inset)
-                }
-                Spacer()
-                    .frame(height: 40.0)
-                NavigationLink(destination: ReviewPage(), label: {
-                    Text("Continue")
-                })
-                .fontWeight(.bold)
-                .padding(.all)
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color.white, lineWidth: 2)
-                )
-                .background(Color("ButtonColor"))
-                .foregroundColor(Color("BGColor"))
-                .cornerRadius(30)
-                Spacer()
-                    .frame(height: 400.0)
             }
-            .navigationTitle("Expenses")
-            .navigationBarTitleDisplayMode(.inline)
-            .padding(.horizontal, 30)
-            .padding(.top, 5)
-            .background(Color("BGColor"))
-            
-            .toolbar{
-                Button{
-                    isPresented.toggle()
-                    
-                } label: {
-                    
-                    Image(systemName: "plus")
-                }
-                .sheet(isPresented: $isPresented){
-                    AddExpense(isPresented: $isPresented)
-                        .presentationDetents([.large])
-                        .foregroundColor(Color("ButtonColor"))
-                }
             }
-            
         }
     }
 }

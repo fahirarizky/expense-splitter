@@ -10,91 +10,88 @@ import SwiftUI
 struct ReviewPage: View {
     var body: some View {
         NavigationView{
-            VStack (alignment: .leading){
-                HStack{
-                    Spacer()
-                    Text("Step")
-                    Text("3").font(.subheadline).fontWeight(.semibold).foregroundColor(Color("ButtonColor"))
-                        .padding(.horizontal,-3)
-                    Text("of 3")
-                    Spacer()
-                }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
-                    .fontWeight(.regular)
+            ZStack {
+                Color("BGColor")
+                    .ignoresSafeArea()
                 
-                ActivityMember()
-                
-                VStack{
-                    List{
-                        ReviewList()
-                    }.listStyle(.grouped)
-                        .font(.body)
+                VStack (alignment: .leading){
+                    HStack{
+                        Spacer()
+                        Text("Step")
+                        Text("3").font(.subheadline).fontWeight(.semibold).foregroundColor(Color("ButtonColor"))
+                            .padding(.horizontal,-3)
+                        Text("of 3")
+                        Spacer()
+                    }.padding(.vertical,6).foregroundColor(.gray).font(.subheadline)
                         .fontWeight(.regular)
-                        .foregroundColor(Color("ButtonColor"))
-
-                }
-                .background(Color.red)
-
-//                    .scrollContentBackground(/*@START_MENU_TOKEN@*/.hidden/*@END_MENU_TOKEN@*/)
-//                    .background(Color("BGColor"))
                     
-                
-                HStack{
-                    Text("Grand Total")
+                    ActivityMember()
+                    
+                    ForEach(0..<5) { _ in
+                        Text("Test")
+                    }
+                    
+                    .listStyle(.plain)
+                    .font(.body)
+                    .fontWeight(.regular)
+                    
+                    HStack{
+                        Text("Grand Total")
+                        Spacer()
+                        Text("Price")
+                    }.font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("LightGreenFont"))
+                    
+                    Button("Done") {
+                        
+                    }
+                    .fontWeight(.bold)
+                    .padding(.all)
+                    .frame(maxWidth: .infinity)
+                    .buttonStyle(.borderless)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(Color("BGColor"), lineWidth: 2)
+                    )
+                    .background(Color("ButtonColor"))
+                    .foregroundColor(Color("BGColor"))
+                    .cornerRadius(30)
+                    
                     Spacer()
-                    Text("Price")
-                }.font(.title3)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 20.0)
-                    .foregroundColor(Color("LightGreenFont"))
-
-                Button("Done") {
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
                 }
-                .fontWeight(.bold)
-                .padding(.all)
-                .frame(maxWidth: .infinity)
-                //                .frame(width: 350.0, height: 50.0)
-                .buttonStyle(.borderless)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color("BGColor"), lineWidth: 2)
-                )
-                .background(Color("ButtonColor"))
-                .foregroundColor(Color("BGColor"))
-                .cornerRadius(30)
+                .navigationTitle("Review")
+                .navigationBarTitleDisplayMode(.inline)
+                .padding(.horizontal, 30.0)
+                .padding(.vertical, 5.0)
+                
             }
-            .navigationTitle("Review")
-            .navigationBarTitleDisplayMode(.inline)
-            .padding(.horizontal, 30.0)
-            .padding(.vertical, 5.0)
-            .background(Color("BGColor"))
         }
     }
 }
 
-struct ReviewList: View {
-    var body: some View{
-        VStack (alignment:.center, spacing:10){
-            HStack{
-                Text("Menu 1")
-                Spacer()
-                Text("Price 2")
-            }
-            HStack{
-                Text("Menu 2")
-                Spacer()
-                Text("Price 2")
-            }
-            HStack{
-                Text("Menu 2")
-                Spacer()
-                Text("Price 2")
-            }
-        }
-//        .background(Color("BGColor"))
-    }
-    
-}
+//struct ReviewList: View {
+//    var body: some View{
+//        VStack (alignment:.center, spacing:10){
+//            HStack{
+//                Text("Menu 1")
+//                Spacer()
+//                Text("Price 2")
+//            }
+//            HStack{
+//                Text("Menu 2")
+//                Spacer()
+//                Text("Price 2")
+//            }
+//            HStack{
+//                Text("Menu 2")
+//                Spacer()
+//                Text("Price 2")
+//            }
+//        }
+//    }
+//
+//}
 
 struct ActivityMember: View{
     var body: some View{
